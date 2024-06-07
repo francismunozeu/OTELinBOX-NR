@@ -1,0 +1,249 @@
+{
+  "name": "OTEL Astronomy Retail Summary",
+  "description": null,
+  "permissions": "PUBLIC_READ_WRITE",
+  "pages": [
+    {
+      "name": "OTEL Astronmy",
+      "description": null,
+      "widgets": [
+        {
+          "title": "Homepage Load in in sec",
+          "layout": {
+            "column": 1,
+            "row": 1,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountIds": [
+                  4361744
+                ],
+                "query": "SELECT average(duration)/1000 FROM SyntheticCheck WHERE entityGuid = 'NDM2MTc0NHxTWU5USHxNT05JVE9SfDU3YTg1ODA0LWNkZTAtNGE2NS04ZTMwLTY2ZTU4NzgxNmE2YQ' FACET locationLabel "
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 2
+              }
+            ]
+          }
+        },
+        {
+          "title": "Checkout Journey Time in Sec",
+          "layout": {
+            "column": 5,
+            "row": 1,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountIds": [
+                  4361744
+                ],
+                "query": "SELECT average(duration) /10000 FROM SyntheticCheck WHERE entityGuid = 'NDM2MTc0NHxTWU5USHxNT05JVE9SfDYxZDkxZDY1LWNiYmQtNDNkNS1iOGM5LWFjZjQxOGEyYTQwMw' FACET locationLabel "
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "thresholds": [
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 4
+              }
+            ]
+          }
+        },
+        {
+          "title": "Kubernestes Pod Restarts",
+          "layout": {
+            "column": 9,
+            "row": 1,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountIds": [
+                  4361744
+                ],
+                "query": "from K8sContainerSample select sum(restartCountDelta) as 'Container Restarts' where clusterName = 'k3.francismunoz.eu' SINCE 1 minutes AGO"
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 0
+              }
+            ]
+          }
+        },
+        {
+          "title": "Site Error rate (%)",
+          "layout": {
+            "column": 1,
+            "row": 4,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountIds": [
+                  4361744
+                ],
+                "query": "SELECT average(newrelic.goldenmetrics.ext.service.errorRate) AS 'Error Rate' FROM Metric WHERE entity.guid in ('NDM2MTc0NHxFWFR8U0VSVklDRXwxMTk3MjE3MzYwOTczNjI4NDQw', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtMTI0NjY5NTY1NzI0MjM3ODIxMg', 'NDM2MTc0NHxFWFR8U0VSVklDRXw4Nzc0NTI0ODczMDM2NzMxNjkz', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtOTEyMDkxMjQ1MzYwNzU0Nzc2MA', 'NDM2MTc0NHxFWFR8U0VSVklDRXwyNzkzNjg5Mjc1NTA3NTA0MDM', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtMTA5ODEzMTM0MzE2NDQ0MzcxOQ', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNTUxNDc4Nzc5MDE2MzA0ODg3Mw', 'NDM2MTc0NHxFWFR8U0VSVklDRXw1MzA3MjI1NjUxOTc5NTA1NDg0', 'NDM2MTc0NHxFWFR8U0VSVklDRXw2MDc0ODU4OTUzMzEwNDQ5MjE1', 'NDM2MTc0NHxFWFR8U0VSVklDRXwyMDMzNjA5MjI4ODEzMDYxMTE1', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtODU1MTc0OTQyNDI0MDExNDgxNQ', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtOTE1NDc5Mjc1MTAxMTIzODUxMA', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNTc0OTg0NTcwMTYyMjY5ODEzNQ', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtMzQ3OTEzMDIwMjA1NDA1MzIyMA', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNTIyMzQwMjMzOTQ1NDIzNTE4Nw', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNzU4NDI2NTA2Njc3MzI5MzMxOA', 'NDM2MTc0NHxFWFR8U0VSVklDRXw1OTkyNDA4OTg0ODY2NTM5MjEw', 'NDM2MTc0NHxFWFR8U0VSVklDRXwyMTM4NTM4MDMyOTc4NTAxOTI1')  LIMIT MAX "
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "thresholds": [
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 2
+              }
+            ]
+          }
+        },
+        {
+          "title": "Checkout Failures ",
+          "layout": {
+            "column": 5,
+            "row": 4,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountIds": [
+                  4361744
+                ],
+                "query": "SELECT count(newrelic.goldenmetrics.synth.monitor.failures) AS 'Failures' FROM Metric WHERE entity.guid in ('NDM2MTc0NHxTWU5USHxNT05JVE9SfDYxZDkxZDY1LWNiYmQtNDNkNS1iOGM5LWFjZjQxOGEyYTQwMw') FACET monitorName LIMIT MAX"
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "thresholds": [
+              {
+                "alertSeverity": "WARNING",
+                "value": 3
+              },
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 5
+              }
+            ]
+          }
+        },
+        {
+          "title": "Card Service Errors",
+          "layout": {
+            "column": 9,
+            "row": 4,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "facet": {
+              "showOtherSeries": false
+            },
+            "nrqlQueries": [
+              {
+                "accountIds": [
+                  4361744
+                ],
+                "query": "SELECT average(newrelic.goldenmetrics.ext.service.errorRate) AS 'Error Rate' FROM Metric WHERE entity.guid in ('NDM2MTc0NHxFWFR8U0VSVklDRXwtMTI0NjY5NTY1NzI0MjM3ODIxMg') "
+              }
+            ],
+            "platformOptions": {
+              "ignoreTimeRange": false
+            },
+            "thresholds": [
+              {
+                "alertSeverity": "CRITICAL",
+                "value": 3
+              }
+            ]
+          }
+        },
+        {
+          "title": "Throughput (rpm)",
+          "layout": {
+            "column": 1,
+            "row": 7,
+            "width": 12,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.line"
+          },
+          "rawConfiguration": {
+            "nrqlQueries": [
+              {
+                "accountId": 4361744,
+                "query": "SELECT rate(count(newrelic.goldenmetrics.ext.service.throughput), 1 MINUTES) AS 'Throughput' FROM Metric WHERE entity.guid in ('NDM2MTc0NHxFWFR8U0VSVklDRXwxMTk3MjE3MzYwOTczNjI4NDQw', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtMTI0NjY5NTY1NzI0MjM3ODIxMg', 'NDM2MTc0NHxFWFR8U0VSVklDRXw4Nzc0NTI0ODczMDM2NzMxNjkz', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtOTEyMDkxMjQ1MzYwNzU0Nzc2MA', 'NDM2MTc0NHxFWFR8U0VSVklDRXwyNzkzNjg5Mjc1NTA3NTA0MDM', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtMTA5ODEzMTM0MzE2NDQ0MzcxOQ', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNTUxNDc4Nzc5MDE2MzA0ODg3Mw', 'NDM2MTc0NHxFWFR8U0VSVklDRXw1MzA3MjI1NjUxOTc5NTA1NDg0', 'NDM2MTc0NHxFWFR8U0VSVklDRXw2MDc0ODU4OTUzMzEwNDQ5MjE1', 'NDM2MTc0NHxFWFR8U0VSVklDRXwyMDMzNjA5MjI4ODEzMDYxMTE1', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtODU1MTc0OTQyNDI0MDExNDgxNQ', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtOTE1NDc5Mjc1MTAxMTIzODUxMA', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNTc0OTg0NTcwMTYyMjY5ODEzNQ', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtMzQ3OTEzMDIwMjA1NDA1MzIyMA', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNTIyMzQwMjMzOTQ1NDIzNTE4Nw', 'NDM2MTc0NHxFWFR8U0VSVklDRXwtNzU4NDI2NTA2Njc3MzI5MzMxOA', 'NDM2MTc0NHxFWFR8U0VSVklDRXw1OTkyNDA4OTg0ODY2NTM5MjEw', 'NDM2MTc0NHxFWFR8U0VSVklDRXwyMTM4NTM4MDMyOTc4NTAxOTI1') FACET entity.name LIMIT MAX TIMESERIES"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variables": []
+}
